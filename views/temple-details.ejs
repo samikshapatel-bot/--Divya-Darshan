@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title><%= temple.name %> | Divya Darshan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050e1f; /* Thoda darker navy professional look ke liye */
+            color: white;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Modern Navbar */
+        nav {
+            background: white;
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        nav a {
+            color: #081A39;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: #ccac00; }
+
+        /* Main Container */
+        .detail-wrapper {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+        }
+
+        .flex-container {
+            display: flex;
+            gap: 60px;
+            align-items: center; /* Image aur text ko perfectly center align karega */
+            flex-wrap: wrap;
+        }
+
+        /* Image Box */
+        .image-box {
+            flex: 1;
+            min-width: 350px;
+        }
+
+        .image-box img {
+            width: 100%;
+            border-radius: 25px;
+            border: 2px solid #FFD700;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            transition: transform 0.5s ease;
+        }
+
+        .image-box img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Text Box */
+        .info-box {
+            flex: 1;
+            min-width: 350px;
+        }
+
+        .info-box h1 {
+            font-family: 'Cinzel', serif;
+            color: #FFD700;
+            font-size: 3rem;
+            margin: 0 0 20px 0;
+            text-shadow: 0 0 15px rgba(255,215,0,0.2);
+        }
+
+        .description {
+            color: #d1d1d1;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .prasad-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #FFD700;
+        }
+
+        .prasad-card h3 {
+            margin-top: 0;
+            color: #FFD700;
+            letter-spacing: 1px;
+        }
+
+        .book-btn {
+            display: block;
+            text-align: center;
+            background: linear-gradient(135deg, #FFD700, #ffb700);
+            color: #081A39;
+            padding: 18px;
+            margin-top: 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .book-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .flex-container { flex-direction: column; text-align: center; }
+            .prasad-card { border-left: none; border-top: 5px solid #FFD700; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/explore">← Back to Explore</a>
+        <span style="color: #081A39; font-family: 'Cinzel', serif; font-size: 1.2rem;">Divya Darshan</span>
+    </nav>
+
+    <div class="detail-wrapper">
+        <div class="flex-container">
+            
+            <div class="image-box">
+                <img src="/images/<%= temple.images[0] %>" 
+                     alt="<%= temple.name %>"
+                     onerror="this.src='https://images.unsplash.com/photo-1627894483216-2138af692e32?q=80&w=1000'">
+            </div>
+
+            <div class="info-box">
+                <h1><%= temple.name %></h1>
+                <div class="description">
+                    <%= temple.description || temple.history %>
+                </div>
+                
+                <div class="prasad-card">
+                    <h3>Special Food & Prasad</h3>
+                    <p><%= temple.food %></p>
+                </div>
+
+                <a href="/book" class="book-btn">
+                    Book Virtual Darshan Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

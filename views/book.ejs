@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Book Darshan - Divya Darshan</title>
+    <style>
+        body {
+            background-color: #081A39; /* Navy Blue Background */
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Full Width Navbar like Home Page */
+        nav {
+            background-color: white;
+            padding: 15px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed; /* Top par fix rahega */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #081A39;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #081A39;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Middle Content Styling */
+        .page-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 80px; /* Navbar ke niche space dene ke liye */
+        }
+
+        .booking-box {
+            background-color: white;
+            width: 90%;
+            max-width: 450px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .booking-box h2 {
+            color: #081A39;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #FFD700;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .confirm-btn {
+            background-color: #081A39;
+            color: #FFD700;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .confirm-btn:hover {
+            background-color: #0d2a5a;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">ॐ Divya Darshan</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/history/samiksha@example.com">View My Bookings</a>
+            <a href="/logout" style="color: #dc3545; font-weight: bold;">Logout 📜</a>
+        </div>
+    </nav>
+
+    <div class="page-content">
+        <div class="booking-box">
+            <h2>Book Your Darshan</h2>
+            
+            <form action="/checkout" method="POST">
+                <div class="form-group">
+                    <label>Select Temple:</label>
+                    <select name="temple">
+                        <option>Kashi Vishwanath, Varanasi</option>
+                        <option>Somnath Mandir, Gujarat</option>
+                        <option>Meenakshi Amman, Madurai</option>
+                        <option>Tirupati Balaji, Andhra Pradesh</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Date:</label>
+                    <input type="date" name="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Slot:</label>
+                    <select name="slot">
+                        <option>Morning (6 AM - 12 PM)</option>
+                        <option>Afternoon (12 PM - 6 PM)</option>
+                        <option>Evening (6 PM - 9 PM)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="confirm-btn">Confirm & Book Now</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

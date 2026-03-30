@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>History - ॐ Divya Darshan</title>
+</head>
+<body style="background-color: #081A39; margin: 0; font-family: Arial, sans-serif; display: flex; flex-direction: column; min-height: 100vh;">
+
+    <nav style="background-color: white; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center;">
+        <a href="/" style="color: #081A39; font-size: 1.5rem; font-weight: bold; text-decoration: none;">ॐ Divya Darshan</a>
+        <div class="nav-links">
+            <a href="/" style="color: #081A39; text-decoration: none; margin-left: 30px;">Home</a>
+            <a href="/book" style="color: #081A39; text-decoration: none; margin-left: 30px;">Book Darshan</a>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 800px; margin: 40px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+        <h2 style="color: #081A39; text-align: center; border-bottom: 3px solid #FFD700; padding-bottom: 10px;">Your Booking History</h2>
+        
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <tr style="background: #081A39; color: #FFD700;">
+                <th style="padding: 12px; border: 1px solid #ddd;">Temple</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Date</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Slot</th>
+            </tr>
+            <% if (bookings.length > 0) { %>
+                <% bookings.forEach(booking => { %>
+                <tr style="text-align: center;">
+                    <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;"><%= booking.temple %></td>
+                    <td style="padding: 12px; border: 1px solid #ddd;"><%= booking.date %></td>
+                    <td style="padding: 12px; border: 1px solid #ddd;"><%= booking.slot %></td>
+                </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3" style="padding: 20px; text-align: center; color: gray;">No bookings found yet.</td>
+                </tr>
+            <% } %>
+        </table>
+    </div>
+
+</body>
+</html>

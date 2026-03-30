@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Secure Checkout - Divya Darshan</title>
+    <style>
+        body {
+            background-color: #081A39; /* Solid Navy Blue */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .main-container {
+            background-color: white;
+            width: 95%;
+            max-width: 400px; /* Thoda chota kiya taaki fit ho jaye */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .temple-header-img {
+            width: 100%;
+            height: 130px; /* Height kam ki image ki */
+            object-fit: cover;
+            border-bottom: 4px solid #FFD700;
+        }
+
+        .content-box {
+            padding: 15px 20px; /* Padding kam ki space bachane ke liye */
+        }
+
+        .title {
+            color: #081A39;
+            margin: 5px 0;
+            font-size: 1.2rem;
+        }
+
+        .details-box {
+            background-color: #f0f4f8;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: left;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .amount-text {
+            color: #28a745;
+            font-size: 1.1rem;
+            margin: 5px 0 0 0;
+        }
+
+        .qr-card {
+            border: 2px dashed #081A39;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+            background: #fafafa;
+        }
+
+        .qr-img {
+            width: 130px; /* QR size optimized */
+            height: 130px;
+            margin: 5px 0;
+        }
+
+        .timer-text {
+            color: #dc3545;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #28a745;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            animation: spin 0.8s linear infinite;
+            display: none;
+            margin: 10px auto;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .pay-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <img src="/images/ujjain-temple.png" alt="Temple" class="temple-header-img">
+
+        <div class="content-box">
+            <h3 class="title">Secure Checkout</h3>
+            
+            <div class="details-box">
+                <p style="margin: 0;">Booking for: <strong><%= temple %></strong></p>
+                <p style="margin: 3px 0;">Date: <%= date %> | Slot: <%= slot %></p>
+                <h3 class="amount-text">Total: ₹501.00</h3>
+            </div>
+
+            <div class="qr-card">
+                <p style="margin: 0; font-size: 0.8rem; font-weight: bold;">Scan to Pay with Any UPI App</p>
+                <img src="/images/qr-code.png" alt="Payment QR Code" class="qr-img">
+                <p style="font-size: 0.7rem; color: #666; margin: 0;">GPay, PhonePe, Paytm, BHIM</p>
+            </div>
+
+            <div class="timer-text">
+                Expires in: <span id="display-timer">05:00</span>
+            </div>
+
+            <div id="loadingCircle" class="loader"></div>
+
+            <form id="paymentForm" action="/confirm" method="POST">
+                <input type="hidden" name="email" value="samiksha@example.com">
+                <input type="hidden" name="temple" value="<%= temple %>">
+                <input type="hidden" name="date" value="<%= date %>">
+                <input type="hidden" name="slot" value="<%= slot %>">
+                
+                <input type="text" placeholder="Enter UPI ID (e.g. name@okaxis)" required>
+                
+                <audio id="successSound" src="/success.mp3"></audio>
+
+                <button type="button" onclick="handlePayment()" class="pay-btn" id="payBtn">
+                    I Have Paid Successfully
+                </button>
+            </form>
+            
+            <p style="font-size: 0.6rem; color: gray; margin-top: 10px;">
+                🔒 SSL Secure 256-bit Encryption
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft = 300;
+        const display = document.getElementById('display-timer');
+        const countdown = setInterval(() => {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            display.innerHTML = `${minutes}:${seconds}`;
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                alert("Session Expired!");
+                window.location.href = "/book";
+            }
+            timeLeft--;
+        }, 1000);
+
+        function handlePayment() {
+            const input = document.querySelector('input[type="text"]');
+            if(!input.value) {
+                alert("Please enter UPI ID");
+                return;
+            }
+            document.getElementById('loadingCircle').style.display = 'block';
+            const btn = document.getElementById('payBtn');
+            btn.innerText = "Processing...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                const sound = document.getElementById('successSound');
+                if(sound) sound.play().catch(e => console.log("Sound error"));
+                
+                setTimeout(() => {
+                    document.getElementById('paymentForm').submit();
+                }, 400); 
+            }, 800); 
+        }
+    </script>
+</body>
+</html>

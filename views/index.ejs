@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divya Darshan | Experience the Divine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #081A39;
+            --gold: #FFD700;
+            --gold-dark: #ccac00;
+            --white: #FFFFFF;
+            --glass: rgba(255, 255, 255, 0.07);
+        }
+
+        body {
+            background-color: var(--navy);
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* 1. Glassy Sticky Navbar */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            color: var(--navy);
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:not(.signup-btn)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gold-dark);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .signup-btn {
+            background-color: var(--navy);
+            color: var(--gold) !important;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* 2. Hero Section Flex Layout */
+        .hero-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 80px 7%;
+            gap: 60px;
+            min-height: 80vh;
+        }
+
+        .hero-text {
+            flex: 1.2;
+            min-width: 320px;
+        }
+
+        .hero-text h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.8rem, 5vw, 4.8rem);
+            margin: 0;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        .highlight { 
+            color: var(--gold);
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            opacity: 0.85;
+            margin: 30px 0;
+            max-width: 580px;
+            line-height: 1.6;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-yellow {
+            background: linear-gradient(135deg, var(--gold), #ffb700);
+            color: var(--navy);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: 0.4s;
+            display: inline-block;
+        }
+
+        .btn-yellow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 215, 0, 0.35);
+        }
+
+        /* 3. Side Content (Glass Quote & Cards) */
+        .side-content {
+            flex: 1;
+            min-width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .quote-box {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 35px;
+            border-radius: 25px;
+            font-style: italic;
+            text-align: center;
+            border-left: 5px solid var(--gold);
+            line-height: 1.5;
+            font-size: 1.1rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+        }
+
+        .temple-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .temple-card:hover {
+            transform: translateY(-12px) scale(1.02);
+        }
+
+        .image-container {
+            height: 160px;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+
+        .temple-card:hover img { transform: scale(1.15); }
+
+        .card-info {
+            padding: 18px;
+            text-align: center;
+        }
+
+        .card-info h3 {
+            margin: 0;
+            color: var(--navy);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .card-info p {
+            margin: 6px 0 0;
+            color: #777;
+            font-size: 0.8rem;
+        }
+
+        /* 4. Footer Wisdom */
+        .wisdom-footer {
+            display: flex;
+            justify-content: center;
+            padding: 60px 7% 100px;
+        }
+
+        @media (max-width: 992px) {
+            .hero-section { text-align: center; justify-content: center; padding-top: 50px; }
+            .hero-text p { margin: 30px auto; }
+            .btn-group { justify-content: center; }
+            .quote-box { order: -1; } /* Quote mobile pe upar aayega */
+        }
+
+        @media (max-width: 600px) {
+            nav { padding: 15px 5%; }
+            .nav-links { display: none; } /* Mobile menu toggle handle manually if needed */
+            .hero-text h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">ॐ DIVYA DARSHAN</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/book">Book Puja</a>
+            <a href="/history">My Bookings</a>
+            <a href="/login">Login</a>
+            <a href="/signup" class="signup-btn">Get Started</a>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="hero-text">
+            <h1>Experience <br> the Divine, <br> <span class="highlight">Anywhere</span></h1>
+            <p>Bridging the gap between faith and distance. Join thousands of devotees in sacred rituals and live darshan from India's holiest temples, directly from your home.</p>
+            <div class="btn-group">
+                <a href="/book" class="btn-yellow">Start Darshan</a>
+                <a href="/explore" class="btn-yellow" style="background: none; border: 2px solid white; color: white;">Explore Temples</a>
+            </div>
+        </div>
+
+        <div class="side-content">
+            <div class="quote-box">
+                "When you step into a temple, you step into peace, faith, and divine energy."
+            </div>
+
+            <div class="card-grid">
+                <div class="temple-card">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1627894483216-2138af692e32?auto=format&fit=crop&q=80&w=600" alt="Kashi Vishwanath">
+                    </div>
+                    <div class="card-info">
+                        <h3>Kashi Vishwanath</h3>
+                        <p>Varanasi, UP</p>
+                    </div>
+                </div>
+
+                <div class="temple-card">
+                    <div class="image-container">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRidsKJL6jZ4AI4sdXqO9HfVwgZZwLu2E1pTg&s" alt="Somnath Mandir">
+                    </div>
+                    <div class="card-info">
+                        <h3>Somnath Mandir</h3>
+                        <p>Gujarat</p>
+                    </div>
+                </div>
+
+                <div class="temple-card">
+                    <div class="image-container">
+                        <img src="https://www.chardhamtour.in/assets/images/tourism/kedarnath/Kedarnath-Temple.webp" alt="Kedarnath Dham">
+                    </div>
+                    <div class="card-info">
+                        <h3>Kedarnath</h3>
+                        <p>Uttarakhand</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wisdom-footer">
+        <div class="quote-box" style="max-width: 650px; border-left: none; border-bottom: 5px solid var(--gold); background: rgba(255, 215, 0, 0.03);">
+            <span style="color: var(--gold); display: block; margin-bottom: 15px; font-style: normal; font-weight: bold; letter-spacing: 3px; font-size: 0.8rem;">SPIRITUAL WISDOM</span>
+            "True Darshan is not just seeing God, it is feeling the divine within yourself and everything around you."
+        </div>
+    </div>
+
+</body>
+</html>

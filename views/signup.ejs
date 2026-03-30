@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Sign Up - ॐ Divya Darshan</title>
+    <style>
+        body {
+            background-color: #081A39; /* Deep Navy Blue */
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar Fix: Full width professional header */
+        nav {
+            background-color: white;
+            padding: 15px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #081A39;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            color: #081A39;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+        }
+
+        /* Center Content Box */
+        .page-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 80px; /* Space for fixed navbar */
+        }
+
+        .signup-box {
+            background-color: white;
+            width: 90%;
+            max-width: 400px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        .signup-box h2 {
+            color: #081A39;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            border-bottom: 4px solid #FFD700;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .signup-box input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+        }
+
+        .signup-box button {
+            background-color: #081A39;
+            color: #FFD700;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .signup-box button:hover {
+            background-color: #0d2a5a;
+            transform: translateY(-2px);
+        }
+
+        .signup-box p {
+            margin-top: 25px;
+            color: #555;
+        }
+
+        .signup-box a {
+            color: #081A39;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">ॐ Divya Darshan</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/book">Book Puja</a>
+            <a href="/login">Login</a>
+        </div>
+    </nav>
+
+    <div class="page-content">
+        <div class="signup-box">
+            <h2>Create Account</h2>
+            <form action="/signup" method="POST">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="password" name="password" placeholder="Create Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="/login">Login here</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
